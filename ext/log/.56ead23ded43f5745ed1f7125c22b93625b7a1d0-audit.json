@@ -1,0 +1,19 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 2
+    },
+    "auditLog": "ext/log/.56ead23ded43f5745ed1f7125c22b93625b7a1d0-audit.json",
+    "files": [
+        {
+            "date": 1586710961500,
+            "name": "ext/log/hapi_sequelize_pm2_sample.log..03",
+            "hash": "aa9008081e55824f06a0cd5a31b3c899"
+        },
+        {
+            "date": 1586715422503,
+            "name": "ext/log/hapi_sequelize_pm2_sample.log..04",
+            "hash": "95942cf327e035960eea3853f9b8d571"
+        }
+    ]
+}

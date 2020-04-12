@@ -1,0 +1,187 @@
+{
+  "server": {
+    "port": 2000,
+    "app": {
+      "$filter": "env",
+      "$base": {
+        "appName": "hapi_sequelize_pm2_sample_app",
+        "errorCodes": [
+          {
+            "errorCode": 100,
+            "errorDesc": "Exception"
+          },
+          {
+            "errorCode": 101,
+            "errorDesc": "Missing Headers"
+          }
+        ],
+        "max_restarts": 2,
+        "kill_timeout": 5000,
+        "listen_timeout": 15000,
+        "min_uptime": 20000
+      },
+      "prod": {
+      },
+      "dev": {
+      },
+      "local": {
+      },
+      "$default": {
+      }
+    },
+    "debug": {
+      "$filter": "env",
+      "$base": {
+        "request": [
+          "error"
+        ]
+      },
+      "prod": {
+        "log": [
+          "error"
+        ]
+      },
+      "dev": {
+        "log": [
+          "error"
+        ]
+      },
+      "local": {
+        "log": [
+          "error"
+        ]
+      },
+      "$default": {
+        "log": [
+          "error"
+        ]
+      }
+    }
+  },
+  "register": {
+    "plugins": [
+      {
+        "plugin": "./ext/log",
+        "name": "log",
+        "options": {
+          "$filter": "env",
+          "$base": {
+            "levels": {
+              "FATAL": 0,
+              "ERROR": 1,
+              "WARN": 2,
+              "INFO": 3,
+              "DEBUG": 4,
+              "TRACE": 5
+            },
+            "logPath": "./ext/log/",
+            "logFilePattern": "hapi_sequelize_pm2_sample.log",
+            "pattern": ".HH"
+          },
+          "prod": {
+            "consoleMaxLogLevel": "ERROR",
+            "fileMaxLogLevel": "INFO"
+          },
+          "dev": {
+            "consoleMaxLogLevel": "ERROR",
+            "fileMaxLogLevel": "DEBUG"
+          },
+          "local": {
+            "consoleMaxLogLevel": "TRACE",
+            "fileMaxLogLevel": "DEBUG"
+          },
+          "$default": {
+            "consoleMaxLogLevel": "TRACE",
+            "fileMaxLogLevel": "DEBUG"
+          }
+        }
+      },
+      {
+        "plugin": "./ext/database",
+        "name": "database",
+        "options": {
+          "$filter": "env",
+          "$base": {
+          },
+          "prod": {
+          },
+          "dev": {
+          },
+          "local": {
+            "db": {
+              "dialect": "sqlite",
+              "port":"",
+              "host":"localhost",
+              "username":"",
+              "password":"",
+              "migrationStorage":"sequelize",
+              "database": "customerTransactionDb",
+              "logging":false,
+              "storage": "localDev.sqlite",
+              "migrationPath": "/migrations/sqlite"
+            }
+          },
+          "$default": {
+            "db": {
+              "dialect": "sqlite",
+              "port":"",
+              "host":"localhost",
+              "username":"",
+              "password":"",
+              "migrationStorage":"sequelize",
+              "database": "customerTransactionDb",
+              "logging":false,
+              "storage": "localDev.sqlite",
+              "migrationPath": "/migrations/sqlite"
+            }
+          }
+        }
+      },
+      {
+        "plugin": "./plugin/customer-api",
+        "name": "mnf customer api",
+        "options": {
+          "$filter": "env",
+          "prod": {
+          },
+          "dev": {
+          },
+          "local": {
+          },
+          "$default": {
+          }
+        }
+      },
+      {
+        "plugin": "@hapi/vision",
+        "name": "vision"
+      },
+      {
+        "plugin": "@hapi/inert",
+        "name": "inert"
+      },
+      {
+        "plugin": "hapi-swagger",
+        "name": "hapiswagger",
+        "options": {
+          "cache": {
+            "expiresIn": 8640000
+          },
+          "reuseDefinitions": false,
+          "basePath": "/customer",
+          "jsonPath": "/swagger.json",
+          "info": {
+            "title": "Hapi - Sequelize - PM2 - API",
+            "description": "Built this app to demonstrate the integration capability bewteen Hapi server family, Sequelize and PM2",
+            "version": "v1",
+            "contact": {
+              "name": "Hemachandran Madivanane",
+              "email": "m.hemachandran@yahoo.co.in"
+            }
+          },
+          "grouping": "tags"
+        }
+      }
+    ]
+  }
+}
