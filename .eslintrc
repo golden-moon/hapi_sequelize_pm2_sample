@@ -1,0 +1,15 @@
+{
+  "globals": {
+    "afterAll": true,
+    "beforeAll": true,
+    "beforeEach": true,
+    "describe": true,
+    "expect": true,
+    "fit": true,
+    "it": true,
+    "xit": true
+  },
+  "rules": {
+    "allowForLoopAfterthoughts": 0
+  }
+}

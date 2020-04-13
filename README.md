@@ -61,6 +61,9 @@ This project is built with **node version 13**
 
 `npm install` - Install the dependencies
 
+`npm run test` - Runs the test case, since most of the Hapi framework works in a configuration mode, tests are 
+written for the routes and repositories only. 
+
 `npm run start` - to start the application 
 
 Swagger editor - `http://localhost:2000/documentation`
@@ -75,7 +78,7 @@ Sample CURL
  -d "{\"firstName\": \"John\",\"lastName\" : \"Smith\"}"`
  
  
-####Running in PM2 mode - **be mindful while running in local machine**
+#### Running in PM2 mode - **be mindful while running in local machine**
 
 `node pm2-server.js` 
 

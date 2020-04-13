@@ -4,6 +4,9 @@
   "description": "____ ### Overview",
   "main": "server.js",
   "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "precommit": "npm run lint",
     "test": "mocha **/*.spec.js",
     "start": "node -e 'require(\"./server\").start()'"
   },
